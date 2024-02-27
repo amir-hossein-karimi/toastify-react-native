@@ -184,6 +184,7 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
       width,
       height,
       hasProgressBar,
+      Component,
     } = this.props;
 
     const {
