@@ -6,7 +6,6 @@
 
 ## Demo
 
-## [View examples on snack.expo.io](https://snack.expo.io/@zahidalidev/toastify-react-native)
 
 https://user-images.githubusercontent.com/46484008/190667640-02a77a0c-8aed-4dc9-a1d3-abf9cb5b3c0a.mp4
 
@@ -153,4 +152,3 @@ Pull requests, feedbacks and suggestions are welcome!
 
 ## License
 
-toastify-react-native is [MIT licensed](https://github.com/zahidalidev/toastify-react-native/blob/master/LICENSE) .

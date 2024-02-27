@@ -1,8 +1,5 @@
 {
-  "name": "@zahidalidev/toastify-react-native",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@zahidalidev"
-  },
+  "name": "@amir-hossein-karimi/toastify-react-native",
   "version": "5.0.0",
   "description": "🎉 toastify-react-native allows you to add notifications to your react-native app (ios, android) with ease. No more nonsense!",
   "main": "index.ts",
@@ -32,10 +29,6 @@
     "web",
     "Typescript"
   ],
-  "bugs": {
-    "url": "https://github.com/zahidalidev/toastify-react-native/issues"
-  },
-  "homepage": "https://github.com/zahidalidev/toastify-react-native/blob/master/README.md",
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
@@ -46,7 +39,14 @@
     "@babel/core": "^7.15.8",
     "metro-react-native-babel-preset": "^0.71.0"
   },
-  "repository": "git://github.com/zahidalidev/toastify-react-native.git",
-  "author": "Zahid Ali <m.zahidalidev@gmail.com>",
-  "license": "MIT"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/amir-hossein-karimi/toastify-react-native.git"
+  },
+  "author": "amir hossein karimi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amir-hossein-karimi/toastify-react-native/issues"
+  },
+  "homepage": "https://github.com/amir-hossein-karimi/toastify-react-native#readme"
 }
