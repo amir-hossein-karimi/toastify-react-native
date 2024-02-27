@@ -35,6 +35,7 @@ export interface ToastManagerState {
   position: string;
   duration: number;
   oldDuration: number;
+  status?: string;
   animationStyle: Record<
     AnimationStyle,
     { animationIn: string; animationOut: string }

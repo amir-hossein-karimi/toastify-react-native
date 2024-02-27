@@ -183,9 +183,7 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
       hasBackdrop,
       width,
       height,
-      theme,
       hasProgressBar,
-      allStyles,
     } = this.props;
 
     const {
@@ -229,7 +227,6 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
               width,
               height,
               top: this.position(),
-              ...allStyles[status],
             },
           ]}
         >
