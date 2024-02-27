@@ -185,6 +185,7 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
       height,
       hasProgressBar,
       Component,
+      hasIcon,
     } = this.props;
 
     const {
@@ -231,13 +232,15 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
             },
           ]}
         >
-          <TouchableOpacity
-            onPress={this.hideToast}
-            activeOpacity={0.9}
-            style={styles.hideButton}
-          >
-            {icon ? icon : <Icon name="close-outline" size={22} />}
-          </TouchableOpacity>
+          {hasIcon && (
+            <TouchableOpacity
+              onPress={this.hideToast}
+              activeOpacity={0.9}
+              style={styles.hideButton}
+            >
+              {icon ? icon : <Icon name="close-outline" size={22} />}
+            </TouchableOpacity>
+          )}
 
           <Component text={text} status={status} />
 
