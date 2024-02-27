@@ -21,6 +21,8 @@ export interface ToastManagerProps {
   animationStyle?: AnimationStyle;
   position?: any;
   Colors: any;
+  hasProgressBar?: any;
+  Component?: any;
 }
 
 export interface ToastManagerState {
