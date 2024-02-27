@@ -55,26 +55,50 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
   };
 
   static info = (text: string, position: string, icon?: any) => {
-    ToastManager.__singletonRef?.show(text, Colors.info, icon, position, 'info');
+    ToastManager.__singletonRef?.show(
+      text,
+      Colors.info,
+      icon,
+      position,
+      "info"
+    );
   };
 
   static success = (text: string, position?: string, icon?: any) => {
-    ToastManager.__singletonRef?.show(text, Colors.success, icon, position, 'success');
+    ToastManager.__singletonRef?.show(
+      text,
+      Colors.success,
+      icon,
+      position,
+      "success"
+    );
   };
 
   static warn = (text: string, position: string, icon?: any) => {
-    ToastManager.__singletonRef?.show(text, Colors.warn, icon, position, "warn");
+    ToastManager.__singletonRef?.show(
+      text,
+      Colors.warn,
+      icon,
+      position,
+      "warn"
+    );
   };
 
   static error = (text: string, position: string, icon?: any) => {
-    ToastManager.__singletonRef?.show(text, Colors.error, icon, position, "error");
+    ToastManager.__singletonRef?.show(
+      text,
+      Colors.error,
+      icon,
+      position,
+      "error"
+    );
   };
 
   show = (
     text = "",
     barColor = Colors.default,
     icon: string,
-    position?: string
+    position?: string,
     status: string
   ) => {
     const { duration } = this.props;
@@ -85,7 +109,7 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
       text,
       barColor,
       icon,
-      status
+      status,
     });
     if (position) this.setState({ position });
     this.isShow = true;
