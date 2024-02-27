@@ -11,7 +11,6 @@ import {
 } from "react-native";
 
 import defaultProps from "../utils/defaultProps";
-import { Colors } from "../config/theme";
 import styles from "./styles";
 import { ToastManagerProps, ToastManagerState } from "../utils/interfaces";
 
@@ -35,7 +34,7 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
     text: "",
     opacityValue: new Animated.Value(1),
     barWidth: new Animated.Value(RFPercentage(32)),
-    barColor: Colors.default,
+    barColor: this.props.Colors.default,
     icon: "checkmark-circle",
     position: this.props.position,
     animationStyle: {
@@ -57,7 +56,7 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
   static info = (text: string, position: string) => {
     ToastManager.__singletonRef?.show(
       text,
-      Colors.info,
+      this.props.Colors.info,
       "ios-information-circle",
       position
     );
@@ -66,20 +65,25 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
   static success = (text: string, position?: string) => {
     ToastManager.__singletonRef?.show(
       text,
-      Colors.success,
+      this.props.Colors.success,
       "checkmark-circle",
       position
     );
   };
 
   static warn = (text: string, position: string) => {
-    ToastManager.__singletonRef?.show(text, Colors.warn, "warning", position);
+    ToastManager.__singletonRef?.show(
+      text,
+      this.props.Colors.warn,
+      "warning",
+      position
+    );
   };
 
   static error = (text: string, position: string) => {
     ToastManager.__singletonRef?.show(
       text,
-      Colors.error,
+      this.props.Colors.error,
       "alert-circle",
       position
     );
@@ -87,7 +91,7 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
 
   show = (
     text = "",
-    barColor = Colors.default,
+    barColor = this.props.Colors.default,
     icon: string,
     position?: string
   ) => {
@@ -173,7 +177,6 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
       width,
       height,
       style,
-      textStyle,
       theme,
       hasProgressBar,
       Component,
@@ -218,7 +221,6 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
             {
               width,
               height,
-              backgroundColor: Colors[theme].back,
               top: this.position(),
               ...style,
             },
@@ -229,10 +231,14 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
             activeOpacity={0.9}
             style={styles.hideButton}
           >
-            <Icon name="close-outline" size={22} color={Colors[theme].text} />
+            <Icon
+              name="close-outline"
+              size={22}
+              color={this.props.Colors[theme].text}
+            />
           </TouchableOpacity>
 
-          <Component text={text} theme={theme} />
+          <Component icon={icon} text={text} />
 
           {hasProgressBar && (
             <View style={styles.progressBarContainer}>
