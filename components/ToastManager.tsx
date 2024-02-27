@@ -11,6 +11,7 @@ import {
 } from "react-native";
 
 import defaultProps from "../utils/defaultProps";
+import { Colors } from "../config/theme";
 import styles from "./styles";
 import { ToastManagerProps, ToastManagerState } from "../utils/interfaces";
 
@@ -34,7 +35,7 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
     text: "",
     opacityValue: new Animated.Value(1),
     barWidth: new Animated.Value(RFPercentage(32)),
-    barColor: this.props.Colors.default,
+    barColor: Colors.default,
     icon: "checkmark-circle",
     position: this.props.position,
     animationStyle: {
@@ -53,47 +54,28 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
     },
   };
 
-  static info = (text: string, position: string) => {
-    ToastManager.__singletonRef?.show(
-      text,
-      this.props.Colors.info,
-      "ios-information-circle",
-      position
-    );
+  static info = (text: string, position: string, icon?: any) => {
+    ToastManager.__singletonRef?.show(text, Colors.info, icon, position, 'info');
   };
 
-  static success = (text: string, position?: string) => {
-    ToastManager.__singletonRef?.show(
-      text,
-      this.props.Colors.success,
-      "checkmark-circle",
-      position
-    );
+  static success = (text: string, position?: string, icon?: any) => {
+    ToastManager.__singletonRef?.show(text, Colors.success, icon, position, 'success');
   };
 
-  static warn = (text: string, position: string) => {
-    ToastManager.__singletonRef?.show(
-      text,
-      this.props.Colors.warn,
-      "warning",
-      position
-    );
+  static warn = (text: string, position: string, icon?: any) => {
+    ToastManager.__singletonRef?.show(text, Colors.warn, icon, position, "warn");
   };
 
-  static error = (text: string, position: string) => {
-    ToastManager.__singletonRef?.show(
-      text,
-      this.props.Colors.error,
-      "alert-circle",
-      position
-    );
+  static error = (text: string, position: string, icon?: any) => {
+    ToastManager.__singletonRef?.show(text, Colors.error, icon, position, "error");
   };
 
   show = (
     text = "",
-    barColor = this.props.Colors.default,
+    barColor = Colors.default,
     icon: string,
     position?: string
+    status: string
   ) => {
     const { duration } = this.props;
     this.state.barWidth.setValue(this.props.width);
@@ -103,6 +85,7 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
       text,
       barColor,
       icon,
+      status
     });
     if (position) this.setState({ position });
     this.isShow = true;
@@ -176,10 +159,9 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
       hasBackdrop,
       width,
       height,
-      style,
       theme,
       hasProgressBar,
-      Component,
+      allStyles,
     } = this.props;
 
     const {
@@ -189,6 +171,7 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
       icon,
       text,
       barWidth,
+      status,
     } = this.state;
 
     return (
@@ -222,7 +205,7 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
               width,
               height,
               top: this.position(),
-              ...style,
+              ...allStyles[status],
             },
           ]}
         >
@@ -231,14 +214,10 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
             activeOpacity={0.9}
             style={styles.hideButton}
           >
-            <Icon
-              name="close-outline"
-              size={22}
-              color={this.props.Colors[theme].text}
-            />
+            {icon ? icon : <Icon name="close-outline" size={22} />}
           </TouchableOpacity>
 
-          <Component icon={icon} text={text} />
+          <Component text={text} status={status} />
 
           {hasProgressBar && (
             <View style={styles.progressBarContainer}>

@@ -20,9 +20,9 @@ export interface ToastManagerProps {
   theme: any;
   animationStyle?: AnimationStyle;
   position?: any;
-  Colors: any;
   hasProgressBar?: any;
   Component?: any;
+  allStyles?: any;
 }
 
 export interface ToastManagerState {
