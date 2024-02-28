@@ -186,6 +186,7 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
       hasProgressBar,
       Component,
       hasIcon,
+      entryStyle,
     } = this.props;
 
     const {
@@ -225,6 +226,7 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
         <View
           style={[
             styles.mainContainer,
+            entryStyle,
             {
               width,
               height,

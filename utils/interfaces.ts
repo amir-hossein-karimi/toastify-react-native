@@ -22,7 +22,7 @@ export interface ToastManagerProps {
   position?: any;
   hasProgressBar?: any;
   Component?: any;
-  allStyles?: any;
+  entryStyle?: any;
 }
 
 export interface ToastManagerState {
