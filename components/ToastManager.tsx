@@ -8,6 +8,7 @@ import {
   Animated,
   Dimensions,
   TouchableOpacity,
+  Pressable,
 } from "react-native";
 
 import defaultProps from "../utils/defaultProps";
@@ -223,7 +224,7 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
         hasBackdrop={hasBackdrop}
         style={styles.modalContainer}
       >
-        <TouchableOpacity
+        <Pressable
           style={[
             styles.mainContainer,
             entryStyle,
@@ -233,8 +234,7 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
               top: this.position(),
             },
           ]}
-          onPress={() => this?.hideToast?.()}
-          activeOpacity={0.9}
+          onPress={this.hideToast}
         >
           {hasIcon && (
             <View style={styles.hideButton}>
@@ -251,7 +251,7 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
               />
             </View>
           )}
-        </TouchableOpacity>
+        </Pressable>
       </Modal>
     );
   }
