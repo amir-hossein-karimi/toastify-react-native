@@ -236,9 +236,9 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
           onPress={this.hideToast}
         >
           {hasIcon && (
-            <View activeOpacity={0.9} style={styles.hideButton}>
+            <TouchableOpacity activeOpacity={0.9} style={styles.hideButton}>
               {icon ? icon : <Icon name="close-outline" size={22} />}
-            </View>
+            </TouchableOpacity>
           )}
 
           <Component text={text} status={status} />
