@@ -233,7 +233,7 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
               top: this.position(),
             },
           ]}
-          onPress={this.hideToast}
+          onPress={() => this?.hideToast?.()}
           activeOpacity={0.9}
         >
           {hasIcon && (
