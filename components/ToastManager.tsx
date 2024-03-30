@@ -223,7 +223,7 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
         hasBackdrop={hasBackdrop}
         style={styles.modalContainer}
       >
-        <View
+        <TouchableOpacity
           style={[
             styles.mainContainer,
             entryStyle,
@@ -233,15 +233,12 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
               top: this.position(),
             },
           ]}
+          onPress={this.hideToast}
         >
           {hasIcon && (
-            <TouchableOpacity
-              onPress={this.hideToast}
-              activeOpacity={0.9}
-              style={styles.hideButton}
-            >
+            <View activeOpacity={0.9} style={styles.hideButton}>
               {icon ? icon : <Icon name="close-outline" size={22} />}
-            </TouchableOpacity>
+            </View>
           )}
 
           <Component text={text} status={status} />
@@ -253,7 +250,7 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
               />
             </View>
           )}
-        </View>
+        </TouchableOpacity>
       </Modal>
     );
   }
