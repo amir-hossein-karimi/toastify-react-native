@@ -14,23 +14,24 @@ import {
 import defaultProps from "../utils/defaultProps";
 import { Colors } from "../config/theme";
 import styles from "./styles";
+import { ToastManagerProps, ToastManagerState } from "../utils/interfaces";
 
 const { height } = Dimensions.get("window");
 
-class ToastManager extends Component {
-  timer;
-  isShow;
+class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
+  private timer: NodeJS.Timeout;
+  private isShow: boolean;
   static defaultProps = defaultProps;
-  static __singletonRef;
+  static __singletonRef: ToastManager | null;
 
-  constructor(props) {
+  constructor(props: ToastManagerProps) {
     super(props);
     ToastManager.__singletonRef = this;
     this.timer = setTimeout(() => {}, 0); // Initialize timer with a dummy value
     this.isShow = false;
   }
 
-  state = {
+  state: any = {
     isShow: false,
     text: "",
     opacityValue: new Animated.Value(1),
@@ -54,7 +55,7 @@ class ToastManager extends Component {
     },
   };
 
-  static info = (text, position, icon) => {
+  static info = (text: string, position: string, icon?: any) => {
     ToastManager.__singletonRef?.show(
       text,
       Colors.info,
@@ -64,7 +65,7 @@ class ToastManager extends Component {
     );
   };
 
-  static success = (text, position, icon) => {
+  static success = (text: string, position?: string, icon?: any) => {
     ToastManager.__singletonRef?.show(
       text,
       Colors.success,
@@ -74,7 +75,7 @@ class ToastManager extends Component {
     );
   };
 
-  static warn = (text, position, icon) => {
+  static warn = (text: string, position: string, icon?: any) => {
     ToastManager.__singletonRef?.show(
       text,
       Colors.warn,
@@ -84,7 +85,7 @@ class ToastManager extends Component {
     );
   };
 
-  static error = (text, position, icon) => {
+  static error = (text: string, position: string, icon?: any) => {
     ToastManager.__singletonRef?.show(
       text,
       Colors.error,
@@ -94,7 +95,13 @@ class ToastManager extends Component {
     );
   };
 
-  show = (text = "", barColor = Colors.default, icon, position, status) => {
+  show = (
+    text = "",
+    barColor = Colors.default,
+    icon: string,
+    position?: string,
+    status: string
+  ) => {
     const { duration } = this.props;
     this.state.barWidth.setValue(this.props.width);
     this.setState({
@@ -110,7 +117,7 @@ class ToastManager extends Component {
     if (duration !== this.props.end) this.close(duration);
   };
 
-  close = (duration) => {
+  close = (duration: number) => {
     if (!this.isShow && !this.state.isShow) return;
     this.resetAll();
     this.timer = setTimeout(() => {
